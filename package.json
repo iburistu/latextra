@@ -1,0 +1,31 @@
+{
+    "name": "latextra",
+    "description": "WYSIWYG live LaTeX editor with image export",
+    "version": "1.0.0",
+    "author": {
+        "name": "Z. Linkletter",
+        "email": "zack@linkletter.dev",
+        "url": "https://linkletter.dev"
+    },
+    "license": "MIT",
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "format": "prettier --write src/**/*.{tsx,js,css}"
+    },
+    "dependencies": {
+        "next": "9.4.2",
+        "react": "16.13.1",
+        "react-color": "^2.18.1",
+        "react-dom": "16.13.1"
+    },
+    "devDependencies": {
+        "@types/node": "^14.0.4",
+        "@types/react": "^16.9.35",
+        "husky": "^4.2.5",
+        "prettier": "^2.0.5",
+        "pretty-quick": "^2.0.1",
+        "typescript": "^3.9.3"
+    }
+}

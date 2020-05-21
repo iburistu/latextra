@@ -1,0 +1,323 @@
+html,
+body,
+#__next {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2 {
+    margin: 0.5rem 0;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: normal;
+}
+
+p {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: large;
+}
+
+#__next {
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: 1.15fr 3.5fr 4rem 0.5fr;
+    grid-template-areas:
+        '. title .'
+        '. app .'
+        '. footer .'
+        '. . .';
+    row-gap: 0.25rem;
+}
+
+#title {
+    grid-area: title;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    user-select: none;
+    margin-top: 2rem;
+}
+
+#app {
+    grid-area: app;
+    border: 2.5px solid black;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: 1rem 1fr 1rem;
+    grid-template-rows: 1rem 3rem 3rem 1fr 1rem;
+    grid-template-areas:
+        '. . .'
+        '. header .'
+        '. input .'
+        '. latex .'
+        '. . .';
+    row-gap: 0.5rem;
+    position: relative;
+    overflow-y: auto;
+}
+
+#about {
+    grid-area: app;
+    border: 2.5px solid black;
+    border-radius: 10px;
+    padding: 2.5rem;
+    user-select: none;
+}
+
+#control-wrapper {
+    grid-area: header;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas: 'size  color  background  export  settings';
+    gap: 0.5rem;
+    position: relative;
+    user-select: none;
+}
+
+#popover {
+    grid-area: color;
+    position: absolute;
+    top: 3.75rem;
+    z-index: 2;
+    user-select: none;
+}
+
+#background-popover {
+    grid-area: background;
+    position: absolute;
+    top: 3.75rem;
+    z-index: 2;
+    user-select: none;
+}
+
+#cover {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+}
+
+#input {
+    grid-area: input;
+    border-radius: 5px;
+    border: 2px solid black;
+    padding-left: 0.5rem;
+    text-overflow: ellipsis;
+}
+
+#font-size-wrapper {
+    grid-area: size;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    border: 2px solid black;
+    border-radius: 5px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+#font-size {
+    font-size: large;
+    font-family: inherit;
+    border: none;
+    border-left: 2px solid black;
+    padding: 0 0 0 0.5rem;
+    width: 100%;
+    height: 100%;
+}
+
+#color-picker-wrapper {
+    grid-area: color;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    border-radius: 5px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+}
+
+#color-picker-button {
+    height: 100%;
+    width: 100%;
+    border-left: 2px solid black;
+}
+
+#background-picker-wrapper {
+    grid-area: background;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    border-radius: 5px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+}
+
+#background-picker-button {
+    width: auto;
+    height: 100%;
+    width: 100%;
+    border-left: 2px solid black;
+}
+
+#export-wrapper {
+    grid-area: export;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    border-radius: 5px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#export {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border: none;
+    border-left: 2px solid black;
+    border-radius: 0 5px 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+#settings-wrapper {
+    grid-area: settings;
+    width: calc(100% - 4px);
+    height: calc(100% - 4px);
+    border-radius: 5px;
+    border: 2px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#settings {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    border: none;
+    border-left: 2px solid black;
+    border-radius: 0 5px 5px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+#latex {
+    grid-area: latex;
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    align-items: center;
+    justify-items: center;
+    border: 2px solid black;
+    border-radius: 5px;
+    user-select: none;
+}
+
+#footer {
+    grid-area: footer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    user-select: none;
+}
+
+#link-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 0.75rem;
+}
+
+#settings-modal {
+    grid-area: span 2 / 2;
+    border: 2px solid black;
+    border-radius: 5px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.settings-item {
+    display: grid;
+    grid-template-rows: 2rem;
+    grid-template-columns: 1.25rem 1fr;
+    grid-template-areas: 'checkbox setting-text';
+    column-gap: 0.5rem;
+    align-items: center;
+    white-space: normal;
+}
+
+.settings-item-number {
+    display: grid;
+    grid-template-rows: 2rem;
+    grid-template-columns: 10rem 1fr;
+    grid-template-areas: 'checkbox setting-text';
+    column-gap: 0.5rem;
+    align-items: center;
+    white-space: normal;
+}
+
+.settings-item,
+.settings-item-number > span {
+    font-size: large;
+}
+
+.emoji {
+    font-size: x-large;
+    padding: 0.25rem;
+    width: 40px;
+    text-align: center;
+}
+
+.katex-display {
+    width: 100%;
+}
+
+@media (max-width: 1150px) {
+    h2 {
+        font-size: medium;
+    }
+
+    #__next {
+        grid-template-columns: 1% 98% 1%;
+        grid-template-rows: 1.25fr 3fr 2rem 0.15fr;
+    }
+
+    #app {
+        grid-template-rows: 1rem 6rem 3rem 1fr 1rem;
+    }
+
+    #control-wrapper {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas:
+            'size size color color background background'
+            'export export export settings settings settings';
+    }
+
+    .emoji {
+        font-size: small;
+    }
+}
