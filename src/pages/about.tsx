@@ -23,7 +23,7 @@ const About = () => (
                 Full disclosure: under the hood,{' '}
                 <span dangerouslySetInnerHTML={{ __html: katex.renderToString('\\LaTeX tRa') }}></span> uses the Google
                 Charts API to generate its images, but I'm working on an offline solution. Check back soon! The entire
-                source code can be found here.
+                source code can be found <a href="https://github.com/iburistu/latextra">here</a>.
             </p>
             <p>
                 Please keep in mind that{' '}
