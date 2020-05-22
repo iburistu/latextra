@@ -10,9 +10,9 @@ const Footer = () => (
             <Link href="/about">
                 <a>about</a>
             </Link>
-            <a>issues?</a>
-            <a>changelog</a>
-            <a>source</a>
+            <a href="https://github.com/iburistu/latextra/issues">issues?</a>
+            <a href="https://github.com/iburistu/latextra/blob/master/CHANGELOG.md">changelog</a>
+            <a href="https://github.com/iburistu/latextra">source</a>
         </div>
         <span id="copyright">
             made with{' '}
@@ -21,7 +21,7 @@ const Footer = () => (
             </span>{' '}
             by z. linkletter {new Date().getFullYear()}
         </span>
-        <span>v1.0.0</span>
+        <span>v1.0.1</span>
     </div>
 );
 
