@@ -21,7 +21,7 @@ const Footer = () => (
             </span>{' '}
             by z. linkletter {new Date().getFullYear()}
         </span>
-        <span>v1.0.1</span>
+        <span>v1.0.2</span>
     </div>
 );
 
