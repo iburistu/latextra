@@ -1,7 +1,7 @@
 {
     "name": "latextra",
     "description": "WYSIWYG live LaTeX editor with image export",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "author": {
         "name": "Z. Linkletter",
         "email": "zack@linkletter.dev",
