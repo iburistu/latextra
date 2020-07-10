@@ -86,7 +86,7 @@ const App = () => {
     const [input, setInput] = useState(eqns[randomEqn]);
     const [fontSize, setFontSize] = useState(36);
     const [fontColor, setFontColor] = useState('#000000');
-    const [backgroundColor, setBackgroundColor] = useState({ r: 236, g: 232, b: 236, a: 0 });
+    const [backgroundColor, setBackgroundColor] = useState({ r: 255, g: 255, b: 255, a: 1 });
     const [displayColorPicker, setDisplayColorPicker] = useState(false);
     const [displayBackgroundPicker, setDisplayBackgroundPicker] = useState(false);
     const [copying, setCopying] = useState(false);
