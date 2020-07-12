@@ -24,13 +24,6 @@ const eqns = [
 const randomEqn = ~~(Math.random() * eqns.length);
 
 const defaultSettings = [
-    /*     {
-        text: 'Preserve settings and input history',
-        value: true,
-        exp: false,
-        type: 'check',
-        id: 'preserve'
-    }, */
     {
         text: 'Enable display mode',
         value: false,
@@ -38,7 +31,35 @@ const defaultSettings = [
         type: 'check',
         id: 'display',
     },
-    /*  {
+    {
+        text: 'Set default font size',
+        value: 36,
+        exp: false,
+        type: 'number',
+        id: 'font-size',
+    },
+    {
+        text: 'Reset user settings',
+        value: false,
+        exp: false,
+        type: 'check',
+        id: 'reset',
+    },
+    /*     {
+        text: 'Set default font color',
+        value: '#000000',
+        exp: false,
+        type: 'color',
+        id: 'font-color'
+    }, */
+    /*     {
+        text: 'Set default background color',
+        value: 0,
+        exp: false,
+        type: 'color',
+        id: 'background-color'
+    }, */
+    /*     {
         text: 'Enable experimental settings and features',
         value: false,
         exp: false,
@@ -46,18 +67,18 @@ const defaultSettings = [
         id: 'experimental'
     },
     {
-        text: 'Set default font size',
-        value: 0,
-        exp: true,
-        type: 'number',
-        id: 'font-size'
-    },
-    {
         text: 'Set maximum output image height',
         value: 0,
         exp: true,
         type: 'number',
         id: 'output-height'
+    },
+    {
+        text: 'Preserve settings and input history',
+        value: true,
+        exp: false,
+        type: 'check',
+        id: 'preserve'
     },
     {
         text: 'Select renderer',
@@ -82,16 +103,27 @@ const defaultSettings = [
     } */
 ];
 
+function useStickyState(defaultValue, key) {
+    const [value, setValue] = React.useState(() => {
+        const stickyValue = typeof window !== 'undefined' ? window.localStorage.getItem(key) : null;
+        return stickyValue !== null ? JSON.parse(stickyValue) : defaultValue;
+    });
+    React.useEffect(() => {
+        window.localStorage.setItem(key, JSON.stringify(value));
+    }, [key, value]);
+    return [value, setValue];
+}
+
 const App = () => {
     const [input, setInput] = useState(eqns[randomEqn]);
-    const [fontSize, setFontSize] = useState(36);
     const [fontColor, setFontColor] = useState('#000000');
     const [backgroundColor, setBackgroundColor] = useState({ r: 255, g: 255, b: 255, a: 1 });
     const [displayColorPicker, setDisplayColorPicker] = useState(false);
     const [displayBackgroundPicker, setDisplayBackgroundPicker] = useState(false);
     const [copying, setCopying] = useState(false);
     const [settingsOpen, setSettingsOpen] = useState(false);
-    const [settings, setSettings] = useState(defaultSettings);
+    const [settings, setSettings] = useStickyState(defaultSettings, 'settings');
+    const [fontSize, setFontSize] = useState(settings?.find((e) => e.id === 'font-size').value ?? 36);
 
     useEffect(() => {
         if (!settingsOpen)
@@ -103,6 +135,9 @@ const App = () => {
                 trust: false,
                 output: 'html',
             });
+        else {
+            if (settings?.find((e) => e.id === 'reset')?.value === true) localStorage.removeItem('settings');
+        }
     }, [input, settingsOpen, settings]);
 
     const handleColorChange = (color: any): void => {
@@ -155,7 +190,7 @@ const App = () => {
     };
 
     const handleSettingChange = (e: any, id: string) => {
-        const value = e.target.checked ?? e.target.value;
+        const value = e;
         setSettings((c) => {
             const objIndex = c.findIndex((el) => el.id === id);
             const updatedObj = { ...c[objIndex], value };

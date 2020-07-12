@@ -1,4 +1,5 @@
 import React from 'react';
+import { CompactPicker } from 'react-color';
 
 interface SettingsItemOptions {
     text: string;
@@ -24,22 +25,51 @@ const Settings = ({ settings, exp, onChangeSetting }: SettingsProps) => (
     <div id="settings-modal">
         {settings.map((e) => {
             if (e.exp && exp !== true) return <React.Fragment key={e.id}></React.Fragment>;
-
-            return (
-                <div className={e.type === 'check' ? 'settings-item' : 'settings-item-number'} key={e.text}>
-                    {e.type === 'check' ? (
-                        <input type={'checkbox'} checked={e.value} onChange={(event) => onChangeSetting(event, e.id)} />
-                    ) : e.type === 'number' ? (
-                        <input type={'number'} value={e.value} onChange={(event) => onChangeSetting(event, e.id)} />
-                    ) : (
-                        <select onChange={(event) => onChangeSetting(event, e.id)}>
+            let control;
+            switch (e.type) {
+                case 'check':
+                    control = (
+                        <input
+                            type={'checkbox'}
+                            checked={e.value}
+                            onChange={(event) => onChangeSetting(event.target.checked, e.id)}
+                        />
+                    );
+                    break;
+                case 'number':
+                    control = (
+                        <input
+                            type={'number'}
+                            value={e.value}
+                            onChange={(event) => onChangeSetting(event.target.value, e.id)}
+                        />
+                    );
+                    break;
+                case 'color':
+                    control = (
+                        <CompactPicker
+                            className={'settings-color-picker'}
+                            color={e.value}
+                            onChange={(color) => onChangeSetting(color.hex, e.id)}
+                        />
+                    );
+                    break;
+                default:
+                    control = (
+                        <select onChange={(event) => onChangeSetting(event.target.value, e.id)}>
                             {e.options?.map((el) => (
                                 <option key={el.text} value={el.value}>
                                     {el.text}
                                 </option>
                             ))}
                         </select>
-                    )}
+                    );
+                    break;
+            }
+
+            return (
+                <div className={e.type === 'check' ? 'settings-item' : 'settings-item-number'} key={e.text}>
+                    {control}
                     <span>{e.text}</span>
                 </div>
             );

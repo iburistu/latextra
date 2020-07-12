@@ -246,7 +246,7 @@ button:focus {
 }
 
 .settings-item-number {
-    grid-template-columns: 10rem 1fr;
+    grid-template-columns: 5rem 1fr;
 }
 
 .emoji {
@@ -260,6 +260,10 @@ button:focus {
     width: 100%;
 }
 
+.settings-color-picker {
+    position: absolute;
+}
+
 @media (max-width: 1150px) {
     h2 {
         font-size: medium;
@@ -267,7 +271,7 @@ button:focus {
 
     #__next {
         grid-template-columns: 1% 98% 1%;
-        grid-template-rows: 1.25fr 3fr 2rem 0.15fr;
+        grid-template-rows: 1fr 3fr 2rem 0.15fr 0.15fr;
     }
 
     #app {
